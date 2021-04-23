@@ -23,7 +23,6 @@ var findDisappearedNumbers = function (nums) {
     let newIdx = Math.abs(nums[i]) - 1;
     nums[newIdx] = -1 * Math.abs(nums[newIdx]);
   }
-//   console.log(nums);
   for (let i = 0, n = nums.length; i < n; i++) {
     if (nums[i] > 0) {
       res.push(i + 1);

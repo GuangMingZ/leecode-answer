@@ -4,6 +4,10 @@
  *     this.val = (val===undefined ? 0 : val)
  *     this.next = (next===undefined ? null : next)
  * }
+ * 19. 删除链表的倒数第 N 个结点
+ * 1.计算链表长度n，然后遍历到n-N个节点进行删除
+ * 2.栈，先进栈，然后出栈，连续出N个就为删除节点
+ * 3.快、慢指针+哑节点，增加一个哑节点，然后快指针先走，慢指针落后N步
  */
 /**
  * @param {ListNode} head
