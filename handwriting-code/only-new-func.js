@@ -1,3 +1,4 @@
+// 使用用new调用的Function
 // 方式一
 function Person(name) {
   if (!new.target) {

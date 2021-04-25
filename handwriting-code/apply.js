@@ -1,3 +1,4 @@
+// 手写apply
 function apply(context, args) {
   if (!this || typeof this !== "function") {
     throw new TypeError("context is must be Function");

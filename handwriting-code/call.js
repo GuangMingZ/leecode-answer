@@ -1,3 +1,4 @@
+// 手写call
 function call(...args) {
   let [context, ...restArgs] = [...args];
   if (!this || typeof this !== "function") {

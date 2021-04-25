@@ -1,3 +1,4 @@
+// 手写bind
 // 思路：类似call，但返回的是函数
 Function.prototype.mybind = function (context) {
     if (typeof this !== 'function') {
