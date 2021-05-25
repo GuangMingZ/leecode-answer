@@ -1,0 +1,24 @@
+{
+  "name": "leecode-answer",
+  "version": "1.0.0",
+  "description": "leecode answer",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "npm i tree-node-cli -g && tree -L 4 -I 'node_modules' > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuangMingZ/leecode-answer.git"
+  },
+  "keywords": [
+    "leecode",
+    "answer"
+  ],
+  "author": "zhaiguangming",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuangMingZ/leecode-answer/issues"
+  },
+  "homepage": "https://github.com/GuangMingZ/leecode-answer#readme"
+}
