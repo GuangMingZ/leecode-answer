@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "update": "npm i tree-node-cli -g && tree -L 4 -I 'node_modules' > README.md"
+    "update": "npm i tree-node-cli -g && tree -L 4 -I 'node_modules' > README.md",
+    "mddir": "mddir"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/GuangMingZ/leecode-answer/issues"
   },
-  "homepage": "https://github.com/GuangMingZ/leecode-answer#readme"
+  "homepage": "https://github.com/GuangMingZ/leecode-answer#readme",
+  "devDependencies": {
+    "mddir": "^1.1.1"
+  }
 }
