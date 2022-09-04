@@ -6,23 +6,46 @@
  */
 // 待柯里化处理的函数
 let sum = (a, b, c, d) => {
+  console.log(a + b + c + d);
   return a + b + c + d;
 };
 
 // 柯里化函数，返回一个被处理过的函数
-let curry = (fn, ...arr) => {
-  // arr 记录已有参数
-  return (...args) => {
-    // args 接收新参数
-    if (fn.length <= [...arr, ...args].length) {
-      // 参数够时，触发执行
-      return fn(...arr, ...args);
+// let curry = (fn, ...arr) => {
+//   // arr 记录已有参数
+//   return (...args) => {
+//     // args 接收新参数
+//     if (fn.length <= [...arr, ...args].length) {
+//       // 参数够时，触发执行
+//       return fn(...arr, ...args);
+//     } else {
+//       // 继续添加参数
+//       return curry(fn, [...arr, ...args]);
+//     }
+//   };
+// };
+
+function curry(fn, args) {
+  const length = fn.length;
+  args = args ?? [];
+
+  return function () {
+    let _args = args.slice(0),
+      arg,
+      i;
+
+    for (i = 0; i < arguments.length; i++) {
+      arg = arguments[i];
+      _args.push(arg);
+    }
+    if (_args.length < length) {
+      return curry.call(this, fn, _args);
     } else {
-      // 继续添加参数
-      return curry(fn, [...arr, ...args]);
+      return fn.apply(this, _args);
     }
   };
-};
+}
+
 
 var sumPlus = curry(sum);
 sumPlus(1)(2)(3)(4);
