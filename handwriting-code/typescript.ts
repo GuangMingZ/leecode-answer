@@ -8,7 +8,7 @@
 
 /**
  * Make all properties in T readonly
- * 将所有属性定义为自读
+ * 将所有属性定义为只读
  */
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];

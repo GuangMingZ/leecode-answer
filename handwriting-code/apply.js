@@ -1,7 +1,7 @@
 // 手写apply
 function apply(context, args) {
   if (!this || typeof this !== "function") {
-    throw new TypeError("context is must be Function");
+    throw new TypeError("caller is must be Function");
   }
   context = context || window;
   context.fn = this;

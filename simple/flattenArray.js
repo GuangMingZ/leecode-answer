@@ -16,7 +16,7 @@ function flattenArray(arr) {
 function flattenArray(arr) {
   if (!Array.isArray(arr)) return false;
   let res = arr.reduce((prev, cur) => {
-    return prev.concat(Array.isArray(cur) ? flat(cur) : cur);
+    return prev.concat(Array.isArray(cur) ? flattenArray(cur) : cur);
   }, []);
   return res;
 }

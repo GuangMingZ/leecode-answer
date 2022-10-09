@@ -2,7 +2,7 @@
 function call(...args) {
   let [context, ...restArgs] = [...args];
   if (!this || typeof this !== "function") {
-    throw new TypeError("context is must be Function");
+    throw new TypeError("caller is must be Function");
   }
   context = context || window;
   context.fn = this;

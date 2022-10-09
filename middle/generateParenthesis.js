@@ -4,18 +4,26 @@
  * 22. 括号生成
  */
 var generateParenthesis = function (n) {
-  if (!n) {
-    return [];
+  const res = [];
+  if (n <= 0) {
+    return res;
   }
-  let leftParenth = Array.from({ length: n }).map((e) => {
-      return "(";
-    }),
-    rightParenth = Array.from({ length: n }).map((e) => {
-      return ")";
-    });
-  let res = "";
-  while (leftParenth.length) {
-    let leftP = leftParenth.pop();
-    
+  dfs("", 0, 0, n, res);
+  return res;
+};
+
+var dfs = function (curStr, left, right, n, res) {
+  if (left === n && right === n) {
+    res.push(curStr);
+    return;
+  }
+  if (left < right) {
+    return;
+  }
+  if (left < n) {
+    dfs(curStr + "(", left + 1, right, n, res);
+  }
+  if (right < n) {
+    dfs(curStr + ")", left, right + 1, n, res);
   }
 };
