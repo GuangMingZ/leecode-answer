@@ -9,7 +9,7 @@ function flattenArray(arr) {
 
 // toString
 function flattenArray(arr) {
-  return arr = arr.toString().split(",");
+  return (arr = arr.toString().split(","));
 }
 
 // reduce
@@ -20,3 +20,5 @@ function flattenArray(arr) {
   }, []);
   return res;
 }
+
+console.log(flattenArray([1, [2, 3], [4, [5, 6]]]));

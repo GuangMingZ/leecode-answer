@@ -25,6 +25,40 @@
  * @param {number} n
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
+// 正向遍历两个数组，逐个插入
 var merge = function (nums1, m, nums2, n) {
-    
+  if (n <= 0) {
+    return;
+  }
+  let num1Idx = 0,
+    num2Idx = 0;
+  while (num1Idx < m + n && num2Idx < n) {
+    const temp = nums1[num1Idx];
+    if (temp > nums2[num2Idx]) {
+      nums1.splice(num1Idx, 1, nums2[num2Idx], temp);
+      num2Idx++;
+    }
+    num1Idx++;
+  }
+  if (num2Idx < n) {
+    nums1.splice(m + num2Idx, 0, ...nums2.slice(num2Idx));
+  }
+  nums1.splice(m + n);
+  return nums1;
 };
+
+// 先合并，再排序
+var merge = function (nums1, m, nums2, n) {
+  if (n <= 0) {
+    return;
+  }
+  nums1.splice(m, n);
+  nums2.forEach((e) => {
+    nums1.push(e);
+  });
+  nums1.sort((a, b) => a - b);
+  return nums1;
+};
+
+console.log(merge([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3));
+console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
