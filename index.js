@@ -23,3 +23,27 @@ async function async2() {
 }
 
 async2();
+
+let name = "张三";
+const obj = {
+  name: "李四",
+  name2: this.name,
+  age: 28,
+  getName() {
+    console.log(this.name);
+  },
+  getName2() {
+    console.log(this.name2);
+  },
+  getAge() {
+    console.log(this.age);
+  },
+};
+
+const getNamePointer = obj.getName;
+getNamePointer();
+
+setTimeout(obj.getName, 100);
+setTimeout(obj.getName2, 100);
+
+
