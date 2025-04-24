@@ -26,7 +26,7 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 // 正向遍历两个数组，逐个插入
-var merge = function (nums1, m, nums2, n) {
+var merge2 = function (nums1, m, nums2, n) {
   if (n <= 0) {
     return;
   }
@@ -48,7 +48,7 @@ var merge = function (nums1, m, nums2, n) {
 };
 
 // 先合并，再排序
-var merge = function (nums1, m, nums2, n) {
+var merge1 = function (nums1, m, nums2, n) {
   if (n <= 0) {
     return;
   }
@@ -60,5 +60,43 @@ var merge = function (nums1, m, nums2, n) {
   return nums1;
 };
 
+/**
+ * 从后往前逆向遍历插入，时间复杂度更低
+ * @param {*} nums1
+ * @param {*} m
+ * @param {*} nums2
+ * @param {*} n
+ */
+var merge = function (nums1, m, nums2, n) {
+  let index = m + n - 1;
+  m--;
+  n--;
+  while (m >= 0 || n >= 0) {
+    const num1 = nums1[m] ?? Number.NEGATIVE_INFINITY;
+    const num2 = nums2[n] ?? Number.NEGATIVE_INFINITY;
+    if (num1 > num2) {
+      nums1[index] = num1;
+      m--;
+    } else {
+      nums1[index] = num2;
+      n--;
+    }
+    index--;
+  }
+  return nums1;
+};
+
+console.time();
+console.log(merge2([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3));
+console.log(merge2([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
+console.timeEnd();
+
+console.time();
+console.log(merge1([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3));
+console.log(merge1([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
+console.timeEnd();
+
+console.time();
 console.log(merge([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3));
 console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
+console.timeEnd();
