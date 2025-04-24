@@ -10,24 +10,62 @@ function deepClone(obj) {
   return copy;
 }
 
-// 深度拷贝-可以有循环依赖
+/**
+ * 使用 简单的引用判断处理循环引用
+ * @param {*} obj
+ * @returns
+ */
 function deepClone1(obj) {
-  let copy = obj instanceof Array ? [] : {};
-  for (let key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (typeof obj[key] === "object" && obj[key] !== obj) {
-        copy[key] = deepClone(obj[key]);
-      } else {
-        copy[key] = obj[key];
-      }
+  if (typeof obj !== "object") {
+    return obj;
+  }
+  let newObj = obj instanceof Array ? [] : {};
+  for (key in obj) {
+    if (obj.hasOwnProperty(key) && obj !== obj[key]) {
+      newObj[key] = deepClone1(obj[key]);
+    } else if (obj === obj[key]) {
+      newObj[key] = newObj;
+    } else {
+      newObj[key] = obj[key];
     }
   }
-  return copy;
+  return newObj;
 }
 
-const obj = {
-  a: 1,
-  b: 2,
-};
-obj.c = obj;
-console.log(deepClone1(obj));
+/**
+ * 使用 WeakMap 处理循环引用
+ * @param {*} obj
+ * @param {*} map
+ * @returns
+ */
+function deepClone2(obj, map = new WeakMap()) {
+  if (typeof obj !== "object") {
+    return obj;
+  }
+  if (map.get(obj)) {
+    return map.get(obj);
+  }
+  let newObj = obj instanceof Array ? [] : {};
+  map.set(obj, newObj);
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] = deepClone2(obj[key], map);
+    } else {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+
+let target = { a: "name", b: 12 };
+target.self = target;
+const clone = deepClone2(target);
+console.log(target, clone === target);
+console.log(clone.self === clone);
+
+// const obj = {
+//   a: 1,
+//   b: 2,
+// };
+// obj.c = obj;
+// console.log(deepClone1(obj));

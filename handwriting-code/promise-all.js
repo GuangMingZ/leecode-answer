@@ -10,6 +10,7 @@ Promise.all = function (promises) {
     let remaining = promises.length;
 
     promises.forEach((promise, index) => {
+      // Promise.resolve的作用是把非Promise对象变成Promise对象
       Promise.resolve(promise)
         .then((value) => {
           results[index] = value;

@@ -1,12 +1,11 @@
 // 手写call
-function call(...args) {
-  let [context, ...restArgs] = [...args];
+function call(context, args) {
   if (!this || typeof this !== "function") {
     throw new TypeError("caller is must be Function");
   }
   context = context || window;
   context.fn = this;
-  const res = context.fn(...restArgs);
+  const res = context.fn(...args);
   delete context.fn;
   return res;
 }
